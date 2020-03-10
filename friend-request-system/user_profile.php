@@ -40,7 +40,7 @@ $get_frnd_num = $frnd_obj->get_all_friends($_SESSION['user_id'], false);
     <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 </head>
-<body style="background-color:powderblue;">>
+<body style="background-color:white;">>
     <div class="profile_container">
         
         <div class="inner_profile">
@@ -57,6 +57,7 @@ $get_frnd_num = $frnd_obj->get_all_friends($_SESSION['user_id'], false);
                 }
                 ?>"><?php echo $get_req_num;?></span></a></li>
                 <li><a href="friends.php" rel="noopener noreferrer">Friends<span class="badge"><?php echo $get_frnd_num;?></span></a></li>
+                <li><a href="draw.php" rel="noopener noreferrer">Draw</a></li>
                 <li><a href="logout.php" rel="noopener noreferrer">Logout</a></li>
             </ul>
         </nav>

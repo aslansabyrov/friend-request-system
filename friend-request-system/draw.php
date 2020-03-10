@@ -56,6 +56,7 @@ $get_all_req_sender = $frnd_obj->request_notification($_SESSION['user_id'], true
             <input type="text" id="note_text" />
 
 <canvas id = "cnv" width="1000" height="600">
+
 <script type = "text/javascript">
 
     var md = false;
@@ -91,9 +92,9 @@ $get_all_req_sender = $frnd_obj->request_notification($_SESSION['user_id'], true
         var context = canvas.getContext('2d');
         if(md){
             canvas.style.cursor = "pointer";
-            context.fillStyle= document.getElementById("colorPicker").value;
+            context.fillStyle = document.getElementById("colorPicker").value;
             context.fillRect(posx, posy, document.getElementById("note_text").value, document.getElementById("note_text").value);
-        }
+        }       
     }
             window.onload=function(){
                 var el = document.getElementById("button1");
@@ -102,7 +103,6 @@ $get_all_req_sender = $frnd_obj->request_notification($_SESSION['user_id'], true
                 function setColor() {
                 alert(document.getElementById("colorPicker").value);
             }
-
 </script>
 </canvas>
 <input type="color" name="colorPicker" id="colorPicker">
@@ -121,6 +121,36 @@ $get_all_req_sender = $frnd_obj->request_notification($_SESSION['user_id'], true
             link.click();
         }
 </script>
+<input type="file" id="uploaded-file"/>
+ <script>
+            var context = canvas.getContext('2d');
+            var uploadedFile = document.getElementById('uploaded-file');
+            window.addEventListener('DOMContentLoaded', initImageLoader);   
 
+            function initImageLoader(){
+                uploadedFile.addEventListener('change', handleManualUploadedFiles)
+            }
+            function handleManualUploadedFiles(ev){
+                var file = ev.target.files[0];
+                handleFile(file);
+            }
+            function handleFile(file){
+                var imageType = /image.*/;
+                if (file.type.match(imageType)){
+                    var reader = new FileReader();
+
+                    reader.onloadend = function(event){
+                        var tempImageStore = new Image();
+                        tempImageStore.onload = function(ev){
+                            // canvas.height = ev.target.height;
+                            // canvas.width = ev.target.width;
+                            context.drawImage(ev.target, 0, 0)
+                        }
+                    tempImageStore.src = event.target.result;
+                    }
+                reader.readAsDataURL(file);
+                }
+            }
+        </script>
 </body>
 </html>
